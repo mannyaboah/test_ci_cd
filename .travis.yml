@@ -3,5 +3,14 @@ services:
   - docker
 
 script:
-   - docker build -t mannyaboah/node .
-   - docker images mannyaboah/node
+  - docker build -t mannyaboah/node .
+  - docker images mannyaboah/node
+
+before_deploy:
+  - docker login -u mannyaboah -p Moose!23
+
+deploy:
+  provider: script
+  script: docker push manny/designs/node
+  on:
+    branch: master
